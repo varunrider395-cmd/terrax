@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <!-- Existing Welcome Loading Script -->
+  <script>
+    try {
+      if (sessionStorage.getItem("terrax.welcomeShown") !== "1") {
+        document.documentElement.classList.add("terrax-booting");
+      }
+    } catch (e) {
+      document.documentElement.classList.add("terrax-booting");
+    }
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Browser Theme -->
+  <meta name="theme-color" content="#07111f">
+
+  <!-- SEO: Page Title -->
+  <title>TerraX — Earth & Space Intelligence</title>
+
+  <!-- SEO: Description -->
+  <meta
+    name="description"
+    content="Explore real-time weather, Earth monitoring, natural disasters, space activity and solar observations with TerraX."
+  >
+
+  <meta name="robots" content="index, follow">
+
+  <!-- TerraX Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Open Graph: Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TerraX">
+  <meta property="og:title" content="TerraX — Earth & Space Intelligence">
+  <meta
+    property="og:description"
+    content="Explore real-time weather, Earth monitoring, natural disasters, space activity and solar observations with TerraX."
+  >
+
+  <!-- Canonical URL: Activate after custom domain connection -->
+  <!-- <link rel="canonical" href="https://terrax.co.in/"> -->
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body data-page="home">
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="index.html"><span class="brand-mark">✦</span><span>TERRA<span class="accent">X</span><small>EARTH & SPACE INTELLIGENCE</small></span></a>
+    <div class="side-label">COMMAND CENTER</div>
+    <nav>
+      <a class="nav-link active" href="index.html"><span>◫</span> Overview</a>
+      <a class="nav-link" href="weather.html"><span>☼</span> Weather</a>
+      <a class="nav-link" href="earth.html"><span>⌁</span> Earth Monitor</a>
+      <a class="nav-link" href="disasters.html"><span>⚠</span> Disasters & Alerts</a>
+      <a class="nav-link" href="space.html"><span>◉</span> Space & Orbit</a>
+      <a class="nav-link" href="solar.html"><span>☀</span> Solar Observatory</a>
+    </nav>
+    <div class="sidebar-bottom"><div class="live-dot"></div><span>DATA SYSTEMS ONLINE</span><small>Independent data sources · v1.0</small></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">GLOBAL INTELLIGENCE NETWORK</div><div class="page-title">Overview <span class="live-pill"><i></i> LIVE DATA</span></div></div><div class="top-actions"><div class="clock" id="local-clock">--:--:--</div><a class="icon-btn" href="about.html" aria-label="About">ⓘ</a></div></header>
+    <section class="hero">
+      <div class="hero-copy"><div class="eyebrow">THE PLANET, IN REAL TIME</div><h1>Understand the<br><em>world in motion.</em></h1><p>One command center for atmospheric conditions, natural events and activity beyond Earth.</p>
+        <div class="search-wrap"><span>⌕</span><input id="location-search" placeholder="Search a city or location…" autocomplete="off" aria-label="Search a city or location"><button id="search-location">Explore location</button><div class="location-suggestions" id="location-suggestions" role="listbox" hidden></div></div><div class="location-note" id="location-label">Detecting your location…</div>
+      </div><div class="hero-orb"><div class="orb-glow"></div><div class="orb-ring ring-one"></div><div class="orb-ring ring-two"></div><div class="earth-art"><span>🌍</span></div><div class="orb-caption">EARTH / 01</div></div>
+    </section>
+    <section class="section-head"><div><div class="eyebrow">LIVE SNAPSHOT</div><h2>Planetary conditions</h2></div><span class="muted" id="updated-at">Connecting to data sources…</span></section>
+    <div class="metric-grid">
+      <article class="metric-card weather-card"><div class="metric-top"><span>LOCAL TEMPERATURE</span><span class="metric-icon">☼</span></div><div class="metric-value" id="home-temp">--°<small>C</small></div><div class="metric-sub" id="home-weather">Fetching current conditions</div><div class="metric-foot"><span>Feels like</span><b id="home-feels">--°</b></div></article>
+      <article class="metric-card"><div class="metric-top"><span>HUMIDITY</span><span class="metric-icon">◌</span></div><div class="metric-value" id="home-humidity">--<small>%</small></div><div class="metric-sub">Relative humidity</div><div class="meter"><i id="humidity-meter"></i></div></article>
+      <article class="metric-card"><div class="metric-top"><span>WIND SPEED</span><span class="metric-icon">≋</span></div><div class="metric-value" id="home-wind">--<small> km/h</small></div><div class="metric-sub">10 m above ground</div><div class="metric-foot"><span>Direction</span><b id="home-winddir">--</b></div></article>
+      <article class="metric-card"><div class="metric-top"><span>PRECIPITATION</span><span class="metric-icon">☂</span></div><div class="metric-value" id="home-precip">--<small> mm</small></div><div class="metric-sub" id="home-precip-prob">Current precipitation · --%</div><div class="metric-foot"><span>Rainfall</span><b id="home-rainfall">-- mm</b></div></article><article class="metric-card"><div class="metric-top"><span>UV INDEX</span><span class="metric-icon">☀</span></div><div class="metric-value" id="home-uv">--</div><div class="metric-sub" id="home-uvlabel">Daily maximum</div><div class="meter uv-meter"><i id="uv-meter"></i></div></article><article class="metric-card air-quality-card"><div class="metric-top"><span>AIR QUALITY</span><span class="metric-icon">◉</span></div><div class="metric-value" id="home-aqi">--</div><div class="metric-sub" id="home-aqi-level">Waiting for air-quality feed</div><div class="metric-foot"><span>US / EU AQI</span><b id="home-pm25">PM2.5 · --</b></div></article>
+    </div>
+    <section class="content-grid">
+      <article class="panel forecast-panel"><div class="panel-head"><div><div class="eyebrow">NEXT 7 DAYS</div><h3>Weather outlook</h3></div><a href="weather.html" class="text-link">Full forecast ↗</a></div><div id="home-forecast" class="forecast-list"><div class="skeleton"></div></div></article>
+      <article class="panel"><div class="panel-head"><div><div class="eyebrow">ORBITAL TRACKING</div><h3>International Space Station</h3></div><span class="live-tag">LIVE</span></div><div class="iss-mini"><div class="iss-icon">🛰</div><div><div class="iss-coords" id="iss-coords">Locating ISS…</div><div class="muted" id="iss-alt">Orbital telemetry</div></div></div><div class="data-row"><span>Velocity</span><b id="iss-speed">-- km/h</b></div><div class="data-row"><span>Visibility</span><b id="iss-visibility">--</b></div><a href="space.html" class="panel-link">Open space tracker <span>→</span></a></article>
+    </section>
+    <section class="content-grid lower-grid">
+      <article class="panel"><div class="panel-head"><div><div class="eyebrow">SEISMIC ACTIVITY</div><h3>Recent earthquakes</h3></div><a href="earth.html" class="text-link">Explore ↗</a></div><div id="home-quakes" class="event-list"><div class="skeleton"></div></div></article>
+      <article class="panel"><div class="panel-head"><div><div class="eyebrow">SPACE WEATHER</div><h3>Solar activity</h3></div><a href="solar.html" class="text-link">Observatory ↗</a></div><div class="solar-summary"><div class="solar-sun">☀</div><div><div class="solar-big" id="solar-kp">--</div><div class="muted">Planetary K-index · latest available</div></div></div><div class="data-row"><span>NOAA data feed</span><b id="solar-feed">Connecting…</b></div><p class="fineprint">Geomagnetic indices describe disturbances in Earth's magnetic field. They are not a local weather forecast.</p></article>
+    </section>
+    <footer>TerraX · Data-led awareness for a changing planet. <span>Always verify urgent warnings with local authorities.</span></footer>
+  </main>
+</div>
+<script src="assets/config.js"></script><script src="assets/app.js"></script>
+</body></html>
