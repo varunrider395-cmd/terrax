@@ -542,18 +542,70 @@ async function loadDONKI(){
   showError("donki-list",`NASA DONKI unavailable (${escapeHTML(detail)}). ${guidance}`);
  }
 }
-
 function showWelcomeOnce(){
- try{if(sessionStorage.getItem("terrax.welcomeShown")==="1")return;sessionStorage.setItem("terrax.welcomeShown","1");}catch(e){}
- const overlay=document.createElement("div");overlay.className="welcome-screen";
- overlay.setAttribute("role","status");overlay.setAttribute("aria-label","Welcome to TerraX");
- overlay.innerHTML='<div class="welcome-brand"><span class="welcome-mark">✦</span><strong>TERRA<span>X</span></strong><small>EARTH & SPACE INTELLIGENCE</small><div class="welcome-message">Welcome to TerraX</div><div class="welcome-progress"><i></i></div><span class="welcome-caption">ONE PLATFORM. INFINITE KNOWLEDGE.</span></div>';
- document.documentElement.classList.add("welcome-lock");
- document.body.classList.add("welcome-lock");
- document.body.appendChild(overlay);
- const finish=()=>{overlay.classList.add("welcome-exit");setTimeout(()=>{overlay.remove();document.documentElement.classList.remove("welcome-lock","terrax-booting");document.body.classList.remove("welcome-lock");},650);};
- setTimeout(finish,3500);
+  try{
+    if(sessionStorage.getItem("terrax.welcomeShown")==="1")return;
+    sessionStorage.setItem("terrax.welcomeShown","1");
+  }catch(e){}
+
+  const overlay=document.createElement("div");
+  overlay.className="welcome-screen";
+
+  // Set final position before adding the overlay to the document.
+  overlay.style.cssText=`
+    position:fixed!important;
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding:24px!important;
+    box-sizing:border-box!important;
+    transform:none!important;
+    overflow:hidden!important;
+    visibility:visible!important;
+  `;
+
+  overlay.setAttribute("role","status");
+  overlay.setAttribute("aria-label","Welcome to TerraX");
+
+  overlay.innerHTML='<div class="welcome-brand"><span class="welcome-mark">✦</span><strong>TERRA<span>X</span></strong><small>EARTH & SPACE INTELLIGENCE</small><div class="welcome-message">Welcome to TerraX</div><div class="welcome-progress"><i></i></div><span class="welcome-caption">ONE PLATFORM. INFINITE KNOWLEDGE.</span></div>';
+
+  const brand=overlay.querySelector(".welcome-brand");
+
+  if(brand){
+    brand.style.cssText=`
+      position:relative!important;
+      width:100%!important;
+      max-width:340px!important;
+      flex:0 1 auto!important;
+      margin:auto!important;
+      transform:none!important;
+      text-align:center!important;
+    `;
+  }
+
+  document.documentElement.classList.add("welcome-lock");
+  document.body.classList.add("welcome-lock");
+
+  document.body.appendChild(overlay);
+
+  const finish=()=>{
+    overlay.classList.add("welcome-exit");
+
+    setTimeout(()=>{
+      overlay.remove();
+      document.documentElement.classList.remove("welcome-lock","terrax-booting");
+      document.body.classList.remove("welcome-lock");
+    },650);
+  };
+
+  setTimeout(finish,3500);
 }
+
+
+
 showWelcomeOnce();
 // Keep native multi-page navigation (real URL/history entries) and restore the
 // exact scroll position when users return with the browser Back/Forward controls.
