@@ -391,6 +391,7 @@ html.terrax-booting body{
 }
 html.terrax-booting body>*:not(.welcome-screen){
   visibility:hidden!important;
+  opacity:0!important;
 }
 html.terrax-booting body>.welcome-screen{
   visibility:visible!important;
